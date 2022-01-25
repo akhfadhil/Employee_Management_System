@@ -6,4 +6,6 @@ public interface EmployeeService {
     
     Employee saveEmployee(Employee employee);
 
+    void save(Employee employee);
+
 }

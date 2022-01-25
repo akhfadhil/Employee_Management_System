@@ -5,6 +5,7 @@ import com.ems.employee.service.EmployeeService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,11 +23,19 @@ public class EmployeeController {
     }
 
     // Build create employee
-    @PostMapping("/employees")
-    public ResponseEntity<Employee> saveEmployee(@RequestBody Employee employee){
-        return new ResponseEntity<Employee>(employeeService.saveEmployee(employee), HttpStatus.CREATED);
-    }
+    // @PostMapping("/employees")
+    // public ResponseEntity<Employee> saveEmployee(@RequestBody Employee employee){
+    //     return new ResponseEntity<Employee>(employeeService.saveEmployee(employee), HttpStatus.CREATED);
+    // }
 
+    @PostMapping("/save")
+	// public String saveEmployee(@ModelAttribute("employee") Employee employee) {
+    public String saveEmployee(@RequestBody Employee employee) {
+		employeeService.save(employee);
+		
+		return "redirect:/employees/list";
+	}
+    
     @RequestMapping("/hello")
     public String hello(){
         return "Hello World";
