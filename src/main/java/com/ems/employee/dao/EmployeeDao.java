@@ -11,13 +11,14 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Transactional
 public class EmployeeDao {
-    
-    @Autowired
+
+	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
 	public void save(Employee employee) {
 		String sql = "INSERT INTO employees ( address, email, first_name, expert, last_name, phone, salary , joiningdate, retireddate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		
-		jdbcTemplate.update(sql,employee.getAddress(),employee.getEmail(),employee.getFirstName(),employee.getExpert(),employee.getLastName(),employee.getPhone(),employee.getSalary(),employee.getJoiningdate(),employee.getRetireddate());
+		jdbcTemplate.update(sql, employee.getAddress(), employee.getEmail(), employee.getFirstName(),
+				employee.getExpert(), employee.getLastName(), employee.getPhone(), employee.getSalary(),
+				employee.getJoiningdate(), employee.getRetireddate());
 	}
 }

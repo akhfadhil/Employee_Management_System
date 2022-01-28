@@ -1,15 +1,12 @@
 package com.ems.employee.model;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
@@ -17,13 +14,14 @@ import lombok.Data;
 @Entity
 @Table(name = "employees")
 public class Employee {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
 
-    @Column(name = "first_name", nullable = false)
+    @Column(name = "first_name")
+    @NotNull(message = "First Name is null")
     private String firstName;
 
     @Column(name = "last_name")
@@ -45,13 +43,10 @@ public class Employee {
     private String salary;
 
     @Column(name = "joiningdate")
-	private String joiningdate;
-	
-	@Column(name = "retireddate")
-	private String retireddate;
-    // @Temporal(TemporalType.DATE)
-    // @Column(name = "join_date")
-    // private Date joinDate;
+    private String joiningdate;
+
+    @Column(name = "retireddate")
+    private String retireddate;
 
     public long getId() {
         return id;
@@ -133,7 +128,4 @@ public class Employee {
         this.retireddate = retireddate;
     }
 
-    // @Temporal(TemporalType.DATE)
-    // @Column(name = "retire_date")
-    // private Date retireDate;
 }
